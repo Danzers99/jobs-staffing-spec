@@ -9,7 +9,31 @@ AI agents are starting to recommend work to people, find vendors for businesses,
 - **JSON Schema (draft 2020-12):** [`schema/jobs-staffing-v1.schema.json`](schema/jobs-staffing-v1.schema.json), also served at https://heydavidmorales.com/ext/jobs/v1/schema.json
 - **Version:** 1.3.0 · **License:** [CC BY 4.0](LICENSE)
 
-## Why
+## Why this exists
+
+### Work is about to run through agents. It should run on honest terms.
+
+Soon, a lot of work won't be found by searching a job board. It'll be found by an agent. A person will ask their assistant for flexible work, and the assistant will choose what to show them. A business will ask its agent for 30 more support agents, and that agent will choose who to call. More and more, the worker will be an AI agent too, taking tasks and getting paid.
+
+When agents sit in the middle of work, whoever describes the work shapes the deal. Today the details that protect workers are rarely in the data at all: what it costs to start, whether you're an employee or a contractor, who earns a fee for sending you, whether the facts are still true. An agent can't warn anyone about what it can't see. At agent scale, a hidden fee or a misclassified job doesn't mislead one person. It misleads everyone an agent talks to.
+
+**Jobs & Staffing is an open language for work between people, businesses and AI agents**, built on a few rules:
+
+- **The whole deal, up front.** Pay, costs, worker status and conditions are fields, not fine print. "No costs" is a stated fact.
+- **Agents disclose their interest.** If someone earns from a recommendation, the data says so.
+- **People and agents, under the same rules.** Any task can be open to a person, an AI agent, or both. Agent work names an accountable operator and how it gets paid.
+- **Consent before contact.** A business's details move to a provider only when they say so.
+- **Facts have dates.** Every claim says when it was last checked, so stale data shows.
+
+**Who this is for:** job boards and staffing firms that want agents to recommend them accurately, people building AI assistants that help people find work, marketplaces where agents take paid tasks, and anyone hiring who'd rather be chosen on the facts than on the fine print.
+
+**What I'm asking:** publish your work this way, build agents that read it, and push back where it doesn't fit your work. It's free and open (CC BY 4.0), v1 never breaks what you've built, and it's developed in public.
+
+I run contact center operations, where people and AI already share the same work: AI handles the easy contacts, people take the rest. That shared workforce is coming to every kind of job. I'd rather its rules be written early, in the open, by someone who sees the work up close.
+
+*Disclosure: I'm David Morales, Operations Manager at ShyftOff. ShyftOff's listing is my worked example, and its sign-up link is my referral. The format itself is vendor-neutral and free for anyone to use.*
+
+### What that looks like in practice
 
 A person asks their AI assistant, *"Find me remote work I can do between classes."* The assistant finds three options. A good answer tells them:
 

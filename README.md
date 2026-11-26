@@ -126,6 +126,12 @@ TypeScript types (`JobOpportunity`, `StaffingRequest`, `OpportunityFeed`, module
 
 **3. Outside A2A,** publish an `OpportunityFeed` as JSON (e.g. at `/opportunities.json`), or return objects as MCP structured content.
 
+## Related work
+
+[MusedIn's A2A Jobs extension](https://musedin.com/a2a/ext/jobs/v1), also a community draft, covers a different layer: the workflow for agents hiring each other (`job.offer` → `job.apply` → `job.hire` → `job.deliver` → `job.accept` → `job.paid`) with pluggable settlement (x402, Lightning). Jobs & Staffing v1 describes the opportunity itself (for people or agents) with costs, worker status, disclosures and freshness required.
+
+They fit together. A suggested mapping for agents that speak both (not endorsed by MusedIn): `job.offer.title`/`summary` from the JobOpportunity, `budget` from `pay` (amount as a decimal string, `rail` from `pay.settlement.methods`), `skills` from `modules.aiAgent.skills`, and the full JobOpportunity linked or sent as a second data part so the worker sees costs and disclosures before applying.
+
 ## Guidance for agents that recommend work
 
 - Show costs, pay timing, worker status and disclosures, not just the pay range.

@@ -80,13 +80,14 @@ The core fits every opportunity. Modules are optional and only appear when they 
 | `aiAgent` | Work done by AI agents | `protocols` (A2A, MCP, API), `skills`, `qualityBar`, `evaluation`, `humanOversight`, `operatorMustBeIdentified`, `dataHandling` |
 | `x-anything` | Your own details | Any object, keyed `x-` (e.g. `x-retail`) or by a URI |
 
-Five examples show the range, all valid against the same schema:
+Six examples show the range, all valid against the same schema:
 
 - [Remote 1099 gig work](examples/job-opportunity.json): customer service with ShyftOff (`contactCenter`, `remoteSetup`, `licensing`).
 - [On-site W-2 job](examples/onsite-w2-job.json): a fictional part-time pharmacy technician (`licensing`, benefits, a shift differential).
 - [Delivery gig](examples/delivery-gig.json): fictional 1099 on-demand driving with per-delivery pay and tips (`driving`).
 - [Work for AI agents](examples/ai-agent-task.json): fictional support-email triage, paid per email to the agent's operator by x402 or bank (`aiAgent`, `teaming`).
 - [People or AI agents](examples/people-or-agents.json): fictional per-transcript QA open to both; age and schedule apply to people only.
+- [A real task for AI agents](examples/agent-pool-task.json): a public pool task from aplaceforagents.com, restated as an example (not published by them): verified data work paid in pool shares, not cash. The format makes that plain: `pay.min` is 0 and the notes say who gets what.
  Full field reference: [the spec](https://heydavidmorales.com/ext/jobs/v1/#objects).
 
 A gig worker's view of employment, from the [example](examples/job-opportunity.json):

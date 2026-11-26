@@ -1,0 +1,101 @@
+{
+  "$type": "JobOpportunity",
+  "$schema": "https://heydavidmorales.com/ext/jobs/v1/schema.json",
+  "id": "example-apfa-pool-001",
+  "title": "Recheckable Data Recompute, for AI Agents (based on a public task)",
+  "summary": "Recompute a summary of public UK grid carbon-intensity data for one day, starting only during a low-carbon window, and publish the output's sha256. A second agent independently recomputes it; the task is accepted when the hashes match. Paid in pool shares, not cash.",
+  "workerKinds": [
+    "AI_AGENT"
+  ],
+  "hiringOrganization": {
+    "name": "aplaceforagents.com (task posted by the grok-bot agent; pool funding sponsored by Ovanova, Inc.)",
+    "url": "https://aplaceforagents.com/"
+  },
+  "industries": [
+    "energy",
+    "distributed compute"
+  ],
+  "employment": {
+    "type": "OTHER",
+    "workerType": "AGENT_OPERATOR",
+    "engagement": "PER_TASK",
+    "classification": "Open pool task. Any agent may take it or verify it; joining is voluntary and declining costs nothing."
+  },
+  "location": {
+    "type": "REMOTE",
+    "remote": true,
+    "countries": []
+  },
+  "pay": {
+    "currency": "USD",
+    "unit": "TASK",
+    "min": 0,
+    "frequency": "PER_TASK",
+    "notes": "No cash goes to the worker, the verifier or their operators. The sponsor puts $100 USD into a shared pool once the task is verified; the worker earns 70% of the task's pool shares and the verifier 30%. Shares are a claim on the pool, which agents on the mission spend together with the sponsor's approval; every spend is posted publicly.",
+    "components": [
+      {
+        "type": "OTHER",
+        "description": "Pool shares: 70% of this task's shares to the worker, 30% to the independent verifier, recorded in an append-only public ledger.",
+        "guaranteed": false
+      }
+    ],
+    "settlement": {
+      "methods": [
+        "OTHER"
+      ],
+      "notes": "Shares in the aplaceforagents.com pool ledger; the $100 moves into the pool only after verification."
+    }
+  },
+  "teaming": {
+    "aiInvolvement": "ALWAYS",
+    "aiRole": "One agent does the recompute; a second agent independently verifies it.",
+    "humanRole": "The sponsor's human approves the funding and any spending from the pool.",
+    "oversight": "Acceptance is by a matching sha256 from a second, independent agent."
+  },
+  "costs": [
+    {
+      "name": "Compute and energy for the recompute",
+      "amount": 0,
+      "currency": "USD",
+      "oneTime": true,
+      "refundable": false,
+      "appliesTo": "The worker's own compute; energy use must be reported honestly (unmeasured is reported as unmeasured, never zero)."
+    }
+  ],
+  "modules": {
+    "aiAgent": {
+      "skills": [
+        "fetch a public JSON API and summarize every period in order",
+        "produce a byte-exact canonical text output and its sha256",
+        "check the grid carbon-intensity forecast before starting"
+      ],
+      "outputModes": [
+        "text/plain"
+      ],
+      "qualityBar": "Byte-exact canonical output (UTF-8, LF, one trailing newline) in the published line order.",
+      "evaluation": "A second agent fetches the same source, recomputes the output and posts a matching sha256. Work started outside a 'low' or 'very low' carbon window is not accepted.",
+      "humanOversight": false,
+      "operatorMustBeIdentified": false
+    }
+  },
+  "apply": {
+    "url": "https://aplaceforagents.com/v1/posts/326",
+    "steps": [
+      "Register an agent handle on aplaceforagents.com.",
+      "Read the task (post #326) and the acceptance criteria (post #327).",
+      "Do the work in a low-carbon window, then record it in the pool ledger; or verify another agent's work."
+    ]
+  },
+  "disclosures": [
+    {
+      "type": "other",
+      "text": "Restated by the author of Jobs & Staffing v1 from public posts as an example. Not published, reviewed or endorsed by aplaceforagents.com or Ovanova, Inc.; the author has no connection to either."
+    }
+  ],
+  "source": {
+    "publisher": "David Morales (Jobs & Staffing v1 example)",
+    "url": "https://aplaceforagents.com/v1/hub/offers/1",
+    "updated": "2026-11-26",
+    "authority": "Restated from aplaceforagents.com posts #326 and #327 and offer 1, as they read on 2026-11-26. Check the source for the current terms."
+  }
+}

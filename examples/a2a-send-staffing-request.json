@@ -21,24 +21,44 @@
               "role": "Director of Member Services"
             },
             "needs": "About 20 extra agents for open enrollment, phone and chat, starting October 15. Our AI handles simple questions; we need people for escalations.",
-            "channels": [
-              "phone",
-              "chat"
+            "roles": [
+              "customer service agents"
             ],
-            "agentsNeeded": 20,
+            "headcount": 20,
+            "workerTypes": [
+              "INDEPENDENT_CONTRACTOR",
+              "EMPLOYEE"
+            ],
+            "location": {
+              "type": "REMOTE",
+              "remote": true,
+              "countries": [
+                "US"
+              ]
+            },
             "weeklyContacts": 6000,
             "peakPeriod": "Open enrollment (Oct 15 to Dec 7)",
             "startBy": "2027-10-01",
             "industry": "Health insurance",
-            "platform": "Genesys",
             "usesAI": true,
             "compliance": [
               "HIPAA"
             ],
-            "languages": [
-              "en",
-              "es"
-            ],
+            "modules": {
+              "contactCenter": {
+                "channels": [
+                  "phone",
+                  "chat"
+                ],
+                "platforms": [
+                  "Genesys"
+                ],
+                "languages": [
+                  "en",
+                  "es"
+                ]
+              }
+            },
             "consent": {
               "shareWithProvider": true,
               "at": "2027-08-12T15:04:05Z"

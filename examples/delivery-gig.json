@@ -1,0 +1,105 @@
+{
+  "$type": "JobOpportunity",
+  "$schema": "https://heydavidmorales.com/ext/jobs/v1/schema.json",
+  "id": "example-grocery-delivery",
+  "title": "Grocery Delivery, 1099 Gig Work (fictional example)",
+  "summary": "Deliver grocery orders in your own car whenever you choose to go online.",
+  "hiringOrganization": {
+    "name": "Example Delivery",
+    "url": "https://example.com"
+  },
+  "occupation": {
+    "onet": "53-3031.00",
+    "name": "Driver/Sales Workers"
+  },
+  "industries": [
+    "delivery",
+    "grocery"
+  ],
+  "employment": {
+    "type": "CONTRACTOR",
+    "workerType": "INDEPENDENT_CONTRACTOR",
+    "engagement": "ON_DEMAND",
+    "classification": "1099 independent contractor",
+    "taxForm": "1099",
+    "taxesWithheld": false,
+    "benefitsProvided": false,
+    "workerProvidesEquipment": true
+  },
+  "location": {
+    "type": "MOBILE",
+    "remote": false,
+    "countries": [
+      "US"
+    ],
+    "places": [
+      {
+        "city": "Tampa",
+        "region": "FL",
+        "country": "US"
+      }
+    ]
+  },
+  "pay": {
+    "currency": "USD",
+    "unit": "TASK",
+    "min": 4,
+    "max": 12,
+    "frequency": "WEEKLY",
+    "components": [
+      {
+        "type": "TIPS",
+        "description": "Customers can tip; drivers keep 100%.",
+        "guaranteed": false
+      },
+      {
+        "type": "MILEAGE",
+        "description": "Mileage is not reimbursed.",
+        "amount": 0,
+        "currency": "USD",
+        "unit": "MILE",
+        "guaranteed": false
+      }
+    ]
+  },
+  "schedule": {
+    "selfScheduled": true,
+    "minHoursPerWeek": 0
+  },
+  "eligibility": {
+    "minAge": 21,
+    "experienceRequired": false
+  },
+  "costs": [
+    {
+      "name": "Insulated delivery bag",
+      "amount": 15,
+      "currency": "USD",
+      "oneTime": true,
+      "refundable": false
+    }
+  ],
+  "modules": {
+    "driving": {
+      "vehicleRequired": true,
+      "vehicleTypes": [
+        "car"
+      ],
+      "insuranceRequired": true,
+      "mileageReimbursed": false
+    },
+    "licensing": {
+      "backgroundCheck": true
+    }
+  },
+  "apply": {
+    "url": "https://example.com/drive"
+  },
+  "disclosures": [],
+  "source": {
+    "publisher": "Example publisher",
+    "url": "https://example.com/jobs",
+    "updated": "2026-11-26",
+    "authority": "Fictional example for the spec."
+  }
+}

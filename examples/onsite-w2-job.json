@@ -1,0 +1,94 @@
+{
+  "$type": "JobOpportunity",
+  "$schema": "https://heydavidmorales.com/ext/jobs/v1/schema.json",
+  "id": "example-pharmacy-technician-tampa",
+  "title": "Pharmacy Technician, Part-Time W-2 (fictional example)",
+  "summary": "Part-time pharmacy technician at a neighborhood pharmacy. Scheduled shifts, benefits after 90 days.",
+  "hiringOrganization": {
+    "name": "Example Pharmacy",
+    "url": "https://example.com"
+  },
+  "occupation": {
+    "onet": "29-2052.00",
+    "name": "Pharmacy Technicians"
+  },
+  "industries": [
+    "healthcare",
+    "retail pharmacy"
+  ],
+  "employment": {
+    "type": "PART_TIME",
+    "workerType": "EMPLOYEE",
+    "engagement": "SCHEDULED_PART_TIME",
+    "classification": "W-2 employee",
+    "taxForm": "W-2",
+    "taxesWithheld": true,
+    "benefitsProvided": true,
+    "workerProvidesEquipment": false
+  },
+  "location": {
+    "type": "ONSITE",
+    "remote": false,
+    "countries": [
+      "US"
+    ],
+    "places": [
+      {
+        "name": "Example Pharmacy, Westshore",
+        "city": "Tampa",
+        "region": "FL",
+        "country": "US"
+      }
+    ]
+  },
+  "pay": {
+    "currency": "USD",
+    "unit": "HOUR",
+    "min": 17,
+    "max": 21,
+    "frequency": "BIWEEKLY",
+    "components": [
+      {
+        "type": "SHIFT_DIFFERENTIAL",
+        "description": "Evenings and weekends",
+        "amount": 1.5,
+        "currency": "USD",
+        "unit": "HOUR",
+        "guaranteed": true
+      }
+    ]
+  },
+  "schedule": {
+    "selfScheduled": false,
+    "minHoursPerWeek": 16,
+    "notes": "Schedule posted two weeks ahead."
+  },
+  "eligibility": {
+    "minAge": 18,
+    "experienceRequired": false
+  },
+  "costs": [],
+  "modules": {
+    "licensing": {
+      "required": [
+        {
+          "name": "Registered Pharmacy Technician",
+          "region": "FL",
+          "providedByEmployer": true
+        }
+      ],
+      "backgroundCheck": true,
+      "drugTest": true
+    }
+  },
+  "apply": {
+    "url": "https://example.com/jobs/pharmacy-technician"
+  },
+  "disclosures": [],
+  "source": {
+    "publisher": "Example publisher",
+    "url": "https://example.com/jobs",
+    "updated": "2026-11-26",
+    "authority": "Fictional example for the spec."
+  }
+}

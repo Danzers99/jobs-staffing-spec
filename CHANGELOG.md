@@ -2,6 +2,14 @@
 
 All changes within v1 are additive: new optional fields only. The extension URI stays `https://heydavidmorales.com/ext/jobs/v1`.
 
+## 1.2.0 (2026-11-26)
+
+- Modular: a core every opportunity has, plus optional `modules`: `contactCenter`, `remoteSetup`, `licensing`, `driving`, and custom modules keyed `x-` or by URI.
+- `pay.components` (tips, commission, bonus, per-task, mileage, shift differential).
+- `location.type` (`REMOTE`, `ONSITE`, `HYBRID`, `MOBILE`) and `location.places`.
+- `StaffingRequest` generalized: `roles`, `headcount`, `workerTypes`, `location`, `modules`. Contact center fields stay valid.
+- New examples: an on-site W-2 job and a 1099 delivery gig.
+
 ## 1.1.0 (2026-11-26)
 
 - Added worker status fields to `JobOpportunity.employment` so gig and contract work are explicit:

@@ -6,7 +6,7 @@
         "description": "Jobs & Staffing v1: structured JobOpportunity and StaffingRequest data parts.",
         "required": false,
         "params": {
-          "version": "1.1.0",
+          "version": "1.2.0",
           "schema": "https://heydavidmorales.com/ext/jobs/v1/schema.json"
         }
       }

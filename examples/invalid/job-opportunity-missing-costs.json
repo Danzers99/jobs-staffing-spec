@@ -14,11 +14,6 @@
     "insurance",
     "telecom"
   ],
-  "channels": [
-    "phone",
-    "chat",
-    "email"
-  ],
   "employment": {
     "type": "CONTRACTOR",
     "workerType": "INDEPENDENT_CONTRACTOR",
@@ -30,6 +25,7 @@
     "workerProvidesEquipment": true
   },
   "location": {
+    "type": "REMOTE",
     "remote": true,
     "countries": [
       "US"
@@ -65,6 +61,33 @@
     "name": "Certification",
     "paid": true,
     "notes": "There is no certification fee. Certification is paid out once you reach a set number of production hours on that campaign; the amount varies by campaign."
+  },
+  "modules": {
+    "contactCenter": {
+      "channels": [
+        "phone",
+        "chat",
+        "email"
+      ],
+      "programs": [
+        "billing and claims",
+        "tech troubleshooting",
+        "upsell and loyalty",
+        "outbound support"
+      ],
+      "inbound": true,
+      "outbound": true
+    },
+    "remoteSetup": {
+      "computer": "A modern computer; many programs ask for Windows 11 with 8 GB of RAM, and some campaigns need a stronger PC.",
+      "headset": "USB headset with a noise-cancelling microphone",
+      "internetMinMbps": 25,
+      "wiredInternetRequired": true,
+      "quietPrivateSpace": true
+    },
+    "licensing": {
+      "backgroundCheck": true
+    }
   },
   "growth": [
     "Strong call metrics earn first pick of open shifts.",

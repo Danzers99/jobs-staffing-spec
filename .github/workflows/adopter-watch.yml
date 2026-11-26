@@ -1,0 +1,27 @@
+# Weekly: look for agents and repositories that use Jobs & Staffing v1 and open an issue
+# for each new one, so it can be checked and added to IMPLEMENTATIONS.md.
+name: Adopter watch
+
+on:
+  schedule:
+    - cron: "17 14 * * 1"   # Mondays 14:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-audit --no-fund
+      - name: Find adopters
+        run: node scripts/find-adopters.mjs --issues
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,132 @@
+{
+  "$type": "JobOpportunity",
+  "$schema": "https://heydavidmorales.com/ext/jobs/v1/schema.json",
+  "id": "shyftoff-remote-customer-service-agent",
+  "title": "Remote Customer Service Agent, 1099 Gig Work (ShyftOff)",
+  "occupation": {
+    "onet": "43-4051.00",
+    "name": "Customer Service Representatives"
+  },
+  "industries": [
+    "healthcare",
+    "technical support",
+    "financial services",
+    "insurance",
+    "telecom"
+  ],
+  "channels": [
+    "phone",
+    "chat",
+    "email"
+  ],
+  "employment": {
+    "type": "CONTRACTOR",
+    "workerType": "GIG",
+    "engagement": "ON_DEMAND",
+    "classification": "1099 independent contractor (gig work, not W-2 employment)",
+    "ongoing": true,
+    "taxForm": "1099",
+    "taxesWithheld": false,
+    "workerProvidesEquipment": true
+  },
+  "location": {
+    "remote": true,
+    "countries": [
+      "US"
+    ],
+    "notes": "The application confirms whether you can work from your location."
+  },
+  "pay": {
+    "currency": "USD",
+    "unit": "HOUR",
+    "min": 14,
+    "max": 20,
+    "frequency": "WEEKLY",
+    "firstPaymentDelayDays": 7,
+    "notes": "The first week's pay is delayed by one week; after that you're paid every week. Trusted agents who earn Star status get a higher hourly rate."
+  },
+  "schedule": {
+    "selfScheduled": true,
+    "minShiftMinutes": 30,
+    "minHoursPerWeek": 0,
+    "notes": "Hours on some campaigns are competitive on purpose; strong call metrics earn first pick of open shifts."
+  },
+  "eligibility": {
+    "minAge": 18,
+    "experienceRequired": false,
+    "equipment": [
+      "A modern computer (many programs ask for Windows 11 with 8 GB of RAM; some campaigns need a stronger PC)",
+      "A USB headset with a noise-cancelling microphone",
+      "Wired internet at 25 Mbps or faster",
+      "A quiet, private workspace"
+    ]
+  },
+  "training": {
+    "name": "Certification",
+    "paid": true,
+    "notes": "There is no certification fee. Certification is paid out once you reach a set number of production hours on that campaign; the amount varies by campaign."
+  },
+  "costs": [
+    {
+      "name": "Background check",
+      "amount": 40,
+      "currency": "USD",
+      "oneTime": true,
+      "refundable": true,
+      "refundCondition": "ShyftOff pays it back once you start working.",
+      "appliesTo": "Every campaign except one."
+    },
+    {
+      "name": "Background check, fingerprinting, drug test and YubiKey security key",
+      "amount": 199,
+      "currency": "USD",
+      "regularAmount": 299,
+      "priceValidUntil": "2026-12-15",
+      "oneTime": true,
+      "refundable": false,
+      "offsetBy": {
+        "name": "Certification bonus",
+        "amount": 300,
+        "currency": "USD",
+        "condition": "Reach 200 production hours on the campaign."
+      },
+      "appliesTo": "One higher-paying campaign."
+    }
+  ],
+  "growth": [
+    "Strong call metrics earn first pick of open shifts.",
+    "Strong agents can take part in QA work.",
+    "Trusted agents can earn Star status: a higher hourly rate with more responsibility."
+  ],
+  "summary": "Joining ShyftOff isn't signing up for a single job. It's like a delivery app, but for customer service work: you join the platform once, get certified on campaigns, and pick up shifts whenever they suit you. ShyftOff keeps adding clients and campaigns, in healthcare, technical support and financial services and with BPO partners, so the opportunities keep coming.",
+  "hiringOrganization": {
+    "name": "ShyftOff",
+    "url": "https://www.shyftoff.com/"
+  },
+  "apply": {
+    "url": "https://heydavidmorales.com/join",
+    "steps": [
+      "Sign up once with the referral link and fill out the short application.",
+      "Record a quick video interview.",
+      "Get certified on a campaign, and add more campaigns as new clients come on.",
+      "Pick up shifts whenever they suit you and work from home."
+    ]
+  },
+  "faqUrl": "https://heydavidmorales.com/shyftoff-faq",
+  "disclosures": [
+    {
+      "type": "referral",
+      "text": "The apply link is David Morales's personal ShyftOff referral link."
+    },
+    {
+      "type": "employee",
+      "text": "The publisher, David Morales, is Operations Manager at ShyftOff."
+    }
+  ],
+  "source": {
+    "publisher": "David Morales (heydavidmorales.com)",
+    "url": "https://heydavidmorales.com/remote-customer-service-jobs",
+    "updated": "2026-11-25",
+    "authority": "Published by an employee of the hiring organization; company figures are ShyftOff's own."
+  }
+}

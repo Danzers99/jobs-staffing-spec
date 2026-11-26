@@ -1,0 +1,650 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://heydavidmorales.com/ext/jobs/v1/schema.json",
+  "title": "Jobs & Staffing v1",
+  "description": "An open format for AI agents to describe remote work opportunities, including gig and 1099 contract work (JobOpportunity) and request contact center or workforce staffing (StaffingRequest). Designed so an agent can recommend work honestly: upfront costs and referral relationships are required fields, not fine print. Field names follow schema.org JobPosting where one exists. Spec: https://heydavidmorales.com/ext/jobs/v1. License: CC BY 4.0.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/JobOpportunity"
+    },
+    {
+      "$ref": "#/$defs/StaffingRequest"
+    },
+    {
+      "$ref": "#/$defs/OpportunityFeed"
+    }
+  ],
+  "$defs": {
+    "Money": {
+      "type": "object",
+      "required": [
+        "amount",
+        "currency"
+      ],
+      "properties": {
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$",
+          "description": "ISO 4217 code, e.g. USD."
+        }
+      }
+    },
+    "Organization": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "Cost": {
+      "type": "object",
+      "description": "Anything the worker pays before or while starting: fees, checks, required purchases. Required in JobOpportunity.costs; an empty array means the publisher states there are none.",
+      "required": [
+        "name",
+        "amount",
+        "currency",
+        "refundable"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "e.g. Background check."
+        },
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "oneTime": {
+          "type": "boolean",
+          "default": true
+        },
+        "refundable": {
+          "type": "boolean",
+          "description": "Paid back to the worker by the hiring organization."
+        },
+        "refundCondition": {
+          "type": "string",
+          "description": "When it is paid back, e.g. 'once you start working' or 'after 200 production hours'."
+        },
+        "offsetBy": {
+          "type": "object",
+          "description": "A bonus or payment that covers the cost, when the cost itself is not refunded.",
+          "required": [
+            "name",
+            "amount",
+            "currency"
+          ],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "amount": {
+              "type": "number",
+              "minimum": 0
+            },
+            "currency": {
+              "type": "string",
+              "pattern": "^[A-Z]{3}$"
+            },
+            "condition": {
+              "type": "string"
+            }
+          }
+        },
+        "regularAmount": {
+          "type": "number",
+          "minimum": 0,
+          "description": "The usual amount when 'amount' is a temporary price."
+        },
+        "priceValidUntil": {
+          "type": "string",
+          "format": "date"
+        },
+        "appliesTo": {
+          "type": "string",
+          "description": "Which roles, campaigns or locations the cost applies to."
+        }
+      }
+    },
+    "Disclosure": {
+      "type": "object",
+      "description": "A material connection between the publisher and the opportunity (e.g. a referral link, employment, payment). Agents should show these to the people they recommend to.",
+      "required": [
+        "type",
+        "text"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "referral",
+            "employee",
+            "paid",
+            "affiliate",
+            "other"
+          ]
+        },
+        "text": {
+          "type": "string"
+        }
+      }
+    },
+    "Source": {
+      "type": "object",
+      "required": [
+        "publisher",
+        "updated"
+      ],
+      "properties": {
+        "publisher": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "updated": {
+          "type": "string",
+          "format": "date",
+          "description": "When the facts were last confirmed. Agents should prefer recent data and say how old it is."
+        },
+        "authority": {
+          "type": "string",
+          "description": "Why the publisher knows, e.g. 'employee of the hiring organization'."
+        }
+      }
+    },
+    "JobOpportunity": {
+      "type": "object",
+      "description": "One kind of work an agent can recommend, with everything a person needs to decide: pay, schedule, eligibility, upfront costs and who benefits from the referral.",
+      "required": [
+        "$type",
+        "id",
+        "title",
+        "summary",
+        "hiringOrganization",
+        "employment",
+        "location",
+        "pay",
+        "schedule",
+        "eligibility",
+        "costs",
+        "apply",
+        "disclosures",
+        "source"
+      ],
+      "properties": {
+        "$type": {
+          "const": "JobOpportunity"
+        },
+        "$schema": {
+          "type": "string",
+          "format": "uri"
+        },
+        "id": {
+          "type": "string",
+          "description": "Stable identifier, unique per publisher."
+        },
+        "title": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "hiringOrganization": {
+          "$ref": "#/$defs/Organization"
+        },
+        "occupation": {
+          "type": "object",
+          "properties": {
+            "onet": {
+              "type": "string",
+              "pattern": "^\\d{2}-\\d{4}\\.\\d{2}$",
+              "description": "O*NET-SOC code, e.g. 43-4051.00 (Customer Service Representatives)."
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        },
+        "industries": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "channels": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "phone",
+              "chat",
+              "email",
+              "social",
+              "video",
+              "back-office"
+            ]
+          }
+        },
+        "employment": {
+          "type": "object",
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "FULL_TIME",
+                "PART_TIME",
+                "CONTRACTOR",
+                "TEMPORARY",
+                "INTERN",
+                "PER_DIEM",
+                "OTHER"
+              ],
+              "description": "schema.org employmentType values. Use CONTRACTOR for independent contractor and gig work."
+            },
+            "workerType": {
+              "type": "string",
+              "enum": [
+                "EMPLOYEE",
+                "INDEPENDENT_CONTRACTOR",
+                "TEMP_AGENCY",
+                "OTHER"
+              ],
+              "description": "The worker's legal status. In the US, EMPLOYEE means W-2 and INDEPENDENT_CONTRACTOR means 1099. Added in 1.1."
+            },
+            "engagement": {
+              "type": "string",
+              "enum": [
+                "ON_DEMAND",
+                "SCHEDULED_PART_TIME",
+                "FULL_TIME",
+                "FIXED_TERM",
+                "PER_TASK"
+              ],
+              "description": "ON_DEMAND is gig-style work where the worker picks shifts or tasks when they want. Added in 1.1."
+            },
+            "classification": {
+              "type": "string",
+              "description": "e.g. '1099 independent contractor' or 'W-2 employee'."
+            },
+            "ongoing": {
+              "type": "boolean",
+              "description": "True when joining gives continuing access to new work, not a single gig."
+            },
+            "taxForm": {
+              "type": "string",
+              "description": "The tax form the worker receives, e.g. 1099 or W-2. Added in 1.1."
+            },
+            "taxesWithheld": {
+              "type": "boolean",
+              "description": "Whether income tax is withheld from pay. Usually false for independent contractors, who set aside their own. Added in 1.1."
+            },
+            "benefitsProvided": {
+              "type": "boolean",
+              "description": "Whether the worker receives benefits such as health insurance or paid time off. Added in 1.1."
+            },
+            "workerProvidesEquipment": {
+              "type": "boolean",
+              "description": "Whether the worker supplies their own computer, headset, internet or workspace. Added in 1.1."
+            }
+          },
+          "description": "How the work is engaged. For gig and contract work, say so in workerType and engagement; agents should state the worker's status plainly (for example, '1099 independent contractor, not a W-2 employee')."
+        },
+        "location": {
+          "type": "object",
+          "required": [
+            "remote",
+            "countries"
+          ],
+          "properties": {
+            "remote": {
+              "type": "boolean"
+            },
+            "countries": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Z]{2}$"
+              },
+              "description": "ISO 3166-1 alpha-2 countries the worker must be in."
+            },
+            "notes": {
+              "type": "string"
+            }
+          }
+        },
+        "pay": {
+          "type": "object",
+          "required": [
+            "currency",
+            "unit",
+            "min",
+            "frequency"
+          ],
+          "properties": {
+            "currency": {
+              "type": "string",
+              "pattern": "^[A-Z]{3}$"
+            },
+            "unit": {
+              "type": "string",
+              "enum": [
+                "HOUR",
+                "DAY",
+                "WEEK",
+                "MONTH",
+                "YEAR",
+                "TASK"
+              ]
+            },
+            "min": {
+              "type": "number",
+              "minimum": 0
+            },
+            "max": {
+              "type": "number",
+              "minimum": 0
+            },
+            "frequency": {
+              "type": "string",
+              "enum": [
+                "DAILY",
+                "WEEKLY",
+                "BIWEEKLY",
+                "SEMIMONTHLY",
+                "MONTHLY",
+                "PER_TASK"
+              ]
+            },
+            "firstPaymentDelayDays": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Extra delay before the first payment, beyond the normal cycle."
+            },
+            "notes": {
+              "type": "string"
+            }
+          }
+        },
+        "schedule": {
+          "type": "object",
+          "required": [
+            "selfScheduled"
+          ],
+          "properties": {
+            "selfScheduled": {
+              "type": "boolean",
+              "description": "The worker picks their own shifts."
+            },
+            "minShiftMinutes": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "minHoursPerWeek": {
+              "type": "number",
+              "minimum": 0,
+              "description": "0 means no minimum."
+            },
+            "notes": {
+              "type": "string"
+            }
+          }
+        },
+        "eligibility": {
+          "type": "object",
+          "required": [
+            "minAge",
+            "experienceRequired"
+          ],
+          "properties": {
+            "minAge": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "experienceRequired": {
+              "type": "boolean"
+            },
+            "equipment": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "other": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "training": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "paid": {
+              "type": "boolean",
+              "description": "The worker is paid for training or certification time."
+            },
+            "notes": {
+              "type": "string"
+            }
+          }
+        },
+        "costs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Cost"
+          }
+        },
+        "growth": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "apply": {
+          "type": "object",
+          "required": [
+            "url"
+          ],
+          "properties": {
+            "url": {
+              "type": "string",
+              "format": "uri"
+            },
+            "steps": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "faqUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "disclosures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Disclosure"
+          },
+          "description": "Required. An empty array means the publisher has no connection to the opportunity."
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        }
+      }
+    },
+    "StaffingRequest": {
+      "type": "object",
+      "description": "A business's request for contact center or workforce capacity, sent by an agent on the business's behalf. 'consent' records that the person approved sharing these details with the provider.",
+      "required": [
+        "$type",
+        "company",
+        "contact",
+        "needs",
+        "consent"
+      ],
+      "properties": {
+        "$type": {
+          "const": "StaffingRequest"
+        },
+        "$schema": {
+          "type": "string",
+          "format": "uri"
+        },
+        "company": {
+          "type": "string"
+        },
+        "contact": {
+          "type": "object",
+          "required": [
+            "name",
+            "email"
+          ],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string",
+              "format": "email"
+            },
+            "role": {
+              "type": "string"
+            }
+          }
+        },
+        "needs": {
+          "type": "string",
+          "description": "What they need, in their words."
+        },
+        "channels": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "phone",
+              "chat",
+              "email",
+              "social",
+              "video",
+              "back-office"
+            ]
+          }
+        },
+        "agentsNeeded": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "weeklyContacts": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "peakPeriod": {
+          "type": "string"
+        },
+        "startBy": {
+          "type": "string",
+          "format": "date"
+        },
+        "industry": {
+          "type": "string"
+        },
+        "platform": {
+          "type": "string",
+          "description": "Contact center platform (CCaaS), e.g. Genesys, Five9, NICE."
+        },
+        "usesAI": {
+          "type": "boolean"
+        },
+        "compliance": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "e.g. HIPAA, PCI-DSS, SOC 2."
+        },
+        "languages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "BCP 47 tags, e.g. en, es."
+        },
+        "consent": {
+          "type": "object",
+          "required": [
+            "shareWithProvider"
+          ],
+          "properties": {
+            "shareWithProvider": {
+              "const": true,
+              "description": "The person reviewed these details and asked to send them."
+            },
+            "at": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        }
+      }
+    },
+    "OpportunityFeed": {
+      "type": "object",
+      "description": "A publisher's list of JobOpportunity objects, e.g. served at /opportunities.json.",
+      "required": [
+        "$type",
+        "publisher",
+        "updated",
+        "opportunities"
+      ],
+      "properties": {
+        "$type": {
+          "const": "OpportunityFeed"
+        },
+        "$schema": {
+          "type": "string",
+          "format": "uri"
+        },
+        "publisher": {
+          "$ref": "#/$defs/Organization"
+        },
+        "updated": {
+          "type": "string",
+          "format": "date"
+        },
+        "opportunities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/JobOpportunity"
+          }
+        }
+      }
+    }
+  }
+}

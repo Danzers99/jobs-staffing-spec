@@ -1,0 +1,54 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "SendMessage",
+  "params": {
+    "message": {
+      "messageId": "m-1",
+      "role": "ROLE_USER",
+      "parts": [
+        {
+          "text": "Staffing request for open enrollment."
+        },
+        {
+          "data": {
+            "$type": "StaffingRequest",
+            "$schema": "https://heydavidmorales.com/ext/jobs/v1/schema.json",
+            "company": "Example Health Plan",
+            "contact": {
+              "name": "Jordan Lee",
+              "email": "jordan@example.com",
+              "role": "Director of Member Services"
+            },
+            "needs": "About 20 extra agents for open enrollment, phone and chat, starting October 15. Our AI handles simple questions; we need people for escalations.",
+            "channels": [
+              "phone",
+              "chat"
+            ],
+            "agentsNeeded": 20,
+            "weeklyContacts": 6000,
+            "peakPeriod": "Open enrollment (Oct 15 to Dec 7)",
+            "startBy": "2027-10-01",
+            "industry": "Health insurance",
+            "platform": "Genesys",
+            "usesAI": true,
+            "compliance": [
+              "HIPAA"
+            ],
+            "languages": [
+              "en",
+              "es"
+            ],
+            "consent": {
+              "shareWithProvider": true,
+              "at": "2027-08-12T15:04:05Z"
+            }
+          },
+          "metadata": {
+            "extension": "https://heydavidmorales.com/ext/jobs/v1"
+          }
+        }
+      ]
+    }
+  }
+}

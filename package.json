@@ -1,0 +1,26 @@
+{
+  "name": "jobs-staffing-spec",
+  "version": "1.3.0",
+  "description": "Jobs & Staffing v1: an open format for describing work for people or AI agents, and requesting staffing with consent. Schema, types and validate().",
+  "type": "module",
+  "main": "./js/index.js",
+  "types": "./js/index.d.ts",
+  "exports": {
+    ".": { "types": "./js/index.d.ts", "default": "./js/index.js" },
+    "./schema.json": "./schema/jobs-staffing-v1.schema.json"
+  },
+  "files": ["js", "schema"],
+  "scripts": {
+    "build": "node scripts/build-packages.mjs",
+    "test": "node scripts/build-packages.mjs --check && node scripts/test-js.mjs"
+  },
+  "dependencies": {
+    "@cfworker/json-schema": "^4.1.1"
+  },
+  "keywords": ["a2a", "mcp", "ai-agents", "jobs", "gig-economy", "staffing", "json-schema", "open-standard"],
+  "homepage": "https://heydavidmorales.com/ext/jobs/v1/",
+  "repository": { "type": "git", "url": "git+https://github.com/Danzers99/jobs-staffing-spec.git" },
+  "bugs": { "url": "https://github.com/Danzers99/jobs-staffing-spec/issues" },
+  "author": "David Morales (https://heydavidmorales.com)",
+  "license": "CC-BY-4.0"
+}

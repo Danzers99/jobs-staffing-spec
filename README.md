@@ -79,6 +79,34 @@ A gig worker's view of employment, from the [example](examples/job-opportunity.j
 }
 ```
 
+## Install
+
+The schema, types and a `validate()` function, straight from GitHub:
+
+```sh
+npm install github:Danzers99/jobs-staffing-spec        # JavaScript / TypeScript (Node, browsers, Workers)
+pip install git+https://github.com/Danzers99/jobs-staffing-spec   # Python 3.9+
+```
+
+```js
+import { validate, extensionDeclaration, dataPart } from "jobs-staffing-spec";
+
+const result = validate(myJobOpportunity);   // { valid, type, errors: [{ path, message }] }
+agentCard.capabilities.extensions.push(extensionDeclaration({ feed: "https://you.example/opportunities.json" }));
+message.parts.push(dataPart(myJobOpportunity));  // A2A 1.0 data part tagged with the extension URI
+```
+
+```python
+import jobs_staffing
+
+result = jobs_staffing.validate(my_job_opportunity)   # {"valid": ..., "type": ..., "errors": [...]}
+card["capabilities"]["extensions"].append(jobs_staffing.extension_declaration(feed="https://you.example/opportunities.json"))
+```
+
+TypeScript types (`JobOpportunity`, `StaffingRequest`, `OpportunityFeed`, modules) ship with the JS package.
+
+**No install needed:** check any document, feed or agent card at the [online validator](https://heydavidmorales.com/ext/jobs/v1/validator) or its API (`POST https://heydavidmorales.com/ext/jobs/v1/validate` with `{"document": ...}` or `{"url": "https://..."}`), which adds honesty checks: reversed pay ranges, stale facts, undisclosed referral links, expired promo prices. A2A agents can also send data parts to `https://heydavidmorales.com/a2a` and ask it to validate.
+
 ## Using it with A2A
 
 **1. Declare the extension** in your agent card ([example](examples/a2a-agent-card-extension.json)):
@@ -106,7 +134,7 @@ A gig worker's view of employment, from the [example](examples/job-opportunity.j
 - When a cost's `priceValidUntil` has passed, use `regularAmount`.
 - Never charge job seekers, and never send a `StaffingRequest` without consent.
 
-## Validate
+## Validate the repo
 
 ```sh
 pip install "jsonschema>=4.18"

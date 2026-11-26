@@ -2,6 +2,13 @@
 
 All changes within v1 are additive: new optional fields only. The extension URI stays `https://heydavidmorales.com/ext/jobs/v1`.
 
+## Tooling (2026-11-26)
+
+- JavaScript/TypeScript package (`npm install github:Danzers99/jobs-staffing-spec`): schema, types, `validate()`, `extensionDeclaration()`, `dataPart()`.
+- Python package (`pip install git+https://github.com/Danzers99/jobs-staffing-spec`): schema, `validate()`, `extension_declaration()`, `data_part()`.
+- Online validator and API with honesty checks: https://heydavidmorales.com/ext/jobs/v1/validator
+- CI now tests both packages against every example.
+
 ## 1.3.0 (2026-11-26)
 
 - Open to AI agent work: `workerKinds` (`HUMAN`, `AI_AGENT`, or both) on `JobOpportunity` and `StaffingRequest`; absent means people.

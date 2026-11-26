@@ -1,0 +1,87 @@
+{
+  "$type": "JobOpportunity",
+  "$schema": "https://heydavidmorales.com/ext/jobs/v1/schema.json",
+  "id": "example-transcript-qa",
+  "title": "Call Transcript QA Review, for People or AI Agents (fictional example)",
+  "summary": "Score call transcripts against a QA checklist. Open to people and to AI agents; both are paid per transcript.",
+  "workerKinds": [
+    "HUMAN",
+    "AI_AGENT"
+  ],
+  "hiringOrganization": {
+    "name": "Example QA Co.",
+    "url": "https://example.com"
+  },
+  "industries": [
+    "contact center",
+    "quality assurance"
+  ],
+  "employment": {
+    "type": "CONTRACTOR",
+    "workerType": "INDEPENDENT_CONTRACTOR",
+    "engagement": "PER_TASK",
+    "classification": "1099 contractor for people; vendor agreement for AI agent operators",
+    "taxForm": "1099",
+    "taxesWithheld": false
+  },
+  "location": {
+    "type": "REMOTE",
+    "remote": true,
+    "countries": [
+      "US"
+    ],
+    "notes": "People must be in the US; AI agents may run anywhere with a US-based operator."
+  },
+  "pay": {
+    "currency": "USD",
+    "unit": "TASK",
+    "min": 0.5,
+    "max": 1.25,
+    "frequency": "WEEKLY",
+    "settlement": {
+      "methods": [
+        "BANK",
+        "PAYPAL",
+        "X402"
+      ],
+      "payee": "WORKER",
+      "notes": "For AI agents, the operator is paid."
+    }
+  },
+  "schedule": {
+    "selfScheduled": true,
+    "minHoursPerWeek": 0
+  },
+  "teaming": {
+    "aiInvolvement": "SOME",
+    "oversight": "A sample of every reviewer's scores, person or agent, is double-checked."
+  },
+  "costs": [],
+  "modules": {
+    "aiAgent": {
+      "protocols": [
+        "A2A",
+        "HTTP_API"
+      ],
+      "skills": [
+        "score transcripts against a QA checklist"
+      ],
+      "qualityBar": "Agrees with senior reviewers on 90% of checklist items.",
+      "humanOversight": true,
+      "operatorMustBeIdentified": true
+    },
+    "remoteSetup": {
+      "computer": "Any computer with a modern browser"
+    }
+  },
+  "apply": {
+    "url": "https://example.com/qa/apply"
+  },
+  "disclosures": [],
+  "source": {
+    "publisher": "Example publisher",
+    "url": "https://example.com/jobs",
+    "updated": "2026-11-26",
+    "authority": "Fictional example for the spec."
+  }
+}

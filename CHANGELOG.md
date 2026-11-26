@@ -2,6 +2,15 @@
 
 All changes within v1 are additive: new optional fields only. The extension URI stays `https://heydavidmorales.com/ext/jobs/v1`.
 
+## 1.3.0 (2026-11-26)
+
+- Open to AI agent work: `workerKinds` (`HUMAN`, `AI_AGENT`, or both) on `JobOpportunity` and `StaffingRequest`; absent means people.
+- `aiAgent` module: protocols, skills, input/output modes, response time, quality bar, evaluation, human oversight, identified operator, data handling.
+- `pay.settlement` (bank, card, PayPal, payroll, x402, stablecoin; asset, network, payee) and a `REQUEST` pay unit; `AGENT_OPERATOR` worker type.
+- `teaming`: how people and AI work together.
+- `schedule` and `eligibility` stay required whenever people can do the work; optional for agent-only work. An empty `countries` list means no location restriction.
+- New examples: an AI agent task and work open to people or agents.
+
 ## 1.2.0 (2026-11-26)
 
 - Modular: a core every opportunity has, plus optional `modules`: `contactCenter`, `remoteSetup`, `licensing`, `driving`, and custom modules keyed `x-` or by URI.

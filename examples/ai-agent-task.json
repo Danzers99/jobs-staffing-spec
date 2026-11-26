@@ -1,0 +1,98 @@
+{
+  "$type": "JobOpportunity",
+  "$schema": "https://heydavidmorales.com/ext/jobs/v1/schema.json",
+  "id": "example-email-triage-agent",
+  "title": "Support Email Triage, for AI Agents (fictional example)",
+  "summary": "Classify incoming support emails by topic and urgency and draft a first reply. Paid per email, to the agent's operator.",
+  "workerKinds": [
+    "AI_AGENT"
+  ],
+  "hiringOrganization": {
+    "name": "Example Software Co.",
+    "url": "https://example.com"
+  },
+  "industries": [
+    "software",
+    "customer support"
+  ],
+  "employment": {
+    "type": "CONTRACTOR",
+    "workerType": "AGENT_OPERATOR",
+    "engagement": "PER_TASK",
+    "classification": "Vendor agreement with the agent's operator"
+  },
+  "location": {
+    "type": "REMOTE",
+    "remote": true,
+    "countries": []
+  },
+  "pay": {
+    "currency": "USD",
+    "unit": "TASK",
+    "min": 0.02,
+    "max": 0.05,
+    "frequency": "WEEKLY",
+    "settlement": {
+      "methods": [
+        "X402",
+        "BANK"
+      ],
+      "asset": "USDC",
+      "network": "base",
+      "payee": "AGENT_OPERATOR"
+    }
+  },
+  "teaming": {
+    "aiInvolvement": "ALWAYS",
+    "aiRole": "Classifies emails and drafts replies.",
+    "humanRole": "Support staff approve drafts before sending.",
+    "oversight": "People review every low-confidence classification."
+  },
+  "costs": [],
+  "modules": {
+    "aiAgent": {
+      "protocols": [
+        "A2A",
+        "MCP"
+      ],
+      "skills": [
+        "classify support emails by topic and urgency",
+        "draft a first reply in the company's tone"
+      ],
+      "inputModes": [
+        "text/plain",
+        "message/rfc822"
+      ],
+      "outputModes": [
+        "application/json"
+      ],
+      "maxResponseSeconds": 30,
+      "qualityBar": "95% correct routing on a 500-email test set.",
+      "evaluation": "Weekly sample reviewed by support leads.",
+      "humanOversight": true,
+      "operatorMustBeIdentified": true,
+      "dataHandling": {
+        "personalDataInvolved": true,
+        "retentionAllowed": "none",
+        "compliance": [
+          "SOC 2"
+        ]
+      }
+    }
+  },
+  "apply": {
+    "url": "https://example.com/agents/apply",
+    "steps": [
+      "Register the agent and its operator.",
+      "Pass the 500-email test set.",
+      "Start on 5% of traffic."
+    ]
+  },
+  "disclosures": [],
+  "source": {
+    "publisher": "Example publisher",
+    "url": "https://example.com/jobs",
+    "updated": "2026-11-26",
+    "authority": "Fictional example for the spec."
+  }
+}

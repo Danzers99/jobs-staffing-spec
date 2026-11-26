@@ -14,6 +14,9 @@
     "insurance",
     "telecom"
   ],
+  "workerKinds": [
+    "HUMAN"
+  ],
   "employment": {
     "type": "CONTRACTOR",
     "workerType": "INDEPENDENT_CONTRACTOR",
@@ -61,6 +64,10 @@
     "name": "Certification",
     "paid": true,
     "notes": "There is no certification fee. Certification is paid out once you reach a set number of production hours on that campaign; the amount varies by campaign."
+  },
+  "teaming": {
+    "aiInvolvement": "SOME",
+    "humanRole": "On programs where clients use AI agents, ShyftOff agents take the escalations and human-in-the-loop contacts the AI hands off. Many programs are fully human."
   },
   "modules": {
     "contactCenter": {

@@ -1,13 +1,13 @@
 # Jobs & Staffing v1
 
-**An open, modular format for AI agents to describe any kind of work honestly (W-2 or 1099, on-site, hybrid or remote) and to request staffing with consent.**
+**An open, modular format to describe any kind of work honestly, done by people, by AI agents or by either (W-2, 1099 or per task; on-site, hybrid or remote), and to request staffing with consent.**
 
-AI agents are starting to recommend work to people and to find vendors for businesses. The details that protect people usually live in fine print: what a job costs up front, whether it's a W-2 job or 1099 gig work, who earns a referral, how fresh the facts are. In this format they are fields, and the most important ones are required.
+AI agents are starting to recommend work to people, find vendors for businesses, and take on work themselves. The details that protect people usually live in fine print: what a job costs up front, whether it's a W-2 job or 1099 gig work, who earns a referral, how fresh the facts are. In this format they are fields, and the most important ones are required.
 
 - **Extension URI:** `https://heydavidmorales.com/ext/jobs/v1`
 - **Spec (rendered):** https://heydavidmorales.com/ext/jobs/v1/
 - **JSON Schema (draft 2020-12):** [`schema/jobs-staffing-v1.schema.json`](schema/jobs-staffing-v1.schema.json), also served at https://heydavidmorales.com/ext/jobs/v1/schema.json
-- **Version:** 1.2.0 · **License:** [CC BY 4.0](LICENSE)
+- **Version:** 1.3.0 · **License:** [CC BY 4.0](LICENSE)
 
 ## Why
 
@@ -19,7 +19,7 @@ A person asks their AI assistant, *"Find me remote work I can do between classes
 - **who benefits** from the recommendation (a referral link, an employee, a paid placement),
 - **how current** the information is.
 
-Job boards and job-posting markup weren't built to carry most of that. Jobs & Staffing v1 is.
+Job boards and job-posting markup weren't built to carry most of that, or to describe work an AI agent can do. Jobs & Staffing v1 is.
 
 ## Principles
 
@@ -29,8 +29,9 @@ Job boards and job-posting markup weren't built to carry most of that. Jobs & St
 4. **Freshness is required.** `source.updated` says when the facts were last confirmed.
 5. **Consent is required.** A `StaffingRequest` carries `consent.shareWithProvider: true`: the person approved sending their details.
 6. **Familiar where it can be.** Names follow schema.org `JobPosting` (`employmentType`, salary units, applicant location); occupations use O\*NET-SOC codes.
-7. **A core for every job, modules for the rest.** The core is what anyone needs to decide. Modules add details for specific kinds of work (see below), and you can add your own.
-8. **Small and optional.** It's an A2A extension; agents that don't know it just see extra data parts. It also works as a JSON feed or an MCP tool result.
+7. **Open to people and AI agents.** `workerKinds` says who can do the work: `HUMAN`, `AI_AGENT` or both. Agent work names an accountable operator, gets its own module (protocols, skills, quality bar, oversight) and can settle by bank, x402 or stablecoin. Human requirements like minimum age apply only when a person can do the work.
+8. **A core for every job, modules for the rest.** The core is what anyone needs to decide. Modules add details for specific kinds of work (see below), and you can add your own.
+9. **Small and optional.** It's an A2A extension; agents that don't know it just see extra data parts. It also works as a JSON feed or an MCP tool result.
 
 ## Objects
 
@@ -52,13 +53,16 @@ The core fits every opportunity. Modules are optional and only appear when they 
 | `remoteSetup` | Work from home | `computer`, `internetMinMbps`, `wiredInternetRequired`, `quietPrivateSpace` |
 | `licensing` | Licensed or checked roles (nursing, pharmacy, trades, finance) | `required[]` licenses, `backgroundCheck`, `drugTest`, `fingerprinting` |
 | `driving` | Delivery, rideshare, transport | `vehicleRequired`, `vehicleTypes`, `licenseClass`, `insuranceRequired`, `mileageReimbursed` |
+| `aiAgent` | Work done by AI agents | `protocols` (A2A, MCP, API), `skills`, `qualityBar`, `evaluation`, `humanOversight`, `operatorMustBeIdentified`, `dataHandling` |
 | `x-anything` | Your own details | Any object, keyed `x-` (e.g. `x-retail`) or by a URI |
 
-Three examples show the range, all valid against the same schema:
+Five examples show the range, all valid against the same schema:
 
 - [Remote 1099 gig work](examples/job-opportunity.json): customer service with ShyftOff (`contactCenter`, `remoteSetup`, `licensing`).
 - [On-site W-2 job](examples/onsite-w2-job.json): a fictional part-time pharmacy technician (`licensing`, benefits, a shift differential).
 - [Delivery gig](examples/delivery-gig.json): fictional 1099 on-demand driving with per-delivery pay and tips (`driving`).
+- [Work for AI agents](examples/ai-agent-task.json): fictional support-email triage, paid per email to the agent's operator by x402 or bank (`aiAgent`, `teaming`).
+- [People or AI agents](examples/people-or-agents.json): fictional per-transcript QA open to both; age and schedule apply to people only.
  Full field reference: [the spec](https://heydavidmorales.com/ext/jobs/v1/#objects).
 
 A gig worker's view of employment, from the [example](examples/job-opportunity.json):
@@ -84,7 +88,7 @@ A gig worker's view of employment, from the [example](examples/job-opportunity.j
   "capabilities": {
     "extensions": [
       { "uri": "https://heydavidmorales.com/ext/jobs/v1", "required": false,
-        "params": { "version": "1.2.0", "schema": "https://heydavidmorales.com/ext/jobs/v1/schema.json" } }
+        "params": { "version": "1.3.0", "schema": "https://heydavidmorales.com/ext/jobs/v1/schema.json" } }
     ]
   }
 }
@@ -109,7 +113,7 @@ pip install "jsonschema>=4.18"
 python scripts/validate.py
 ```
 
-Every file in `examples/` must pass; every file in `examples/invalid/` must fail (a job with no `costs`, an unknown worker type, a custom module without an `x-` prefix, a staffing request without consent). CI runs this on every push.
+Every file in `examples/` must pass; every file in `examples/invalid/` must fail (a job with no `costs`, an unknown worker type, a custom module without an `x-` prefix, people-or-agents work missing human eligibility, a staffing request without consent). CI runs this on every push.
 
 ## Implementations
 
